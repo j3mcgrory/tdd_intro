@@ -10,16 +10,17 @@ class Password_Test extends FunSpec with Matchers {
   
    describe("A password checker") {
     describe("determines proper length") {
+      it("rejects passwords without any digits") {
+        val longEnough = "abcdef"
+        val hasNumsMedium = "abc123"
+        Password.isValid(longEnough) shouldBe false
+      }
       it("rejects passwords that are less than 6 characters") {
-
-        val tooShort = "abcde"
-        val longEnough = "abcdef"        
-        val evenLonger = "abcdefghi"        
-
-        Password.isValid(tooShort) shouldBe false
-        Password.isValid(longEnough) shouldBe true
-        Password.isValid(evenLonger) shouldBe true
-      }   
+        val hasNumsShort = "ab12"
+        val hasNumsLong = "abcd1234"
+        Password.isValid(hasNumsShort) shouldBe false     
+        Password.isValid(hasNumsLong) shouldBe true
+      }
     }
   }
 }
